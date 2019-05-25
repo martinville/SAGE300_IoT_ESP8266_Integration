@@ -51,7 +51,7 @@ $CUSTOMER_SHIPTO_LOCATION='001';
 $SHIP_VIA_CODE='CCT';
 $ORDER_COMMENT='This is a comment';
 
-//Add order variables to array that will which will later be formatted into JSON
+//Add order variables to array which will later be formatted into JSON
 $data = array(
 'CustomerNumber' => $ACCOUNT_CODE,
 'PurchaseOrderNumber' => $CUST_PO_NUMBER,
