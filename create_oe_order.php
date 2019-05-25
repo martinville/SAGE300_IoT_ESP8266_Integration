@@ -23,14 +23,13 @@ if(!empty($_POST["QTY_SHIPPED"])){$QTY_SHIPPED=$_POST["QTY_SHIPPED"];}else{$QTY_
 
 
 
-//Declare  Array Item detail row
+//Declare  Arrays
 $ItemData='';  
-//After collecting row information into $ItemData, keep adding to $allItemData array
 $allItemData=array(); 
 $result='';
 
 
-//Add above row of data to $ItemData
+//Add item data to $ItemData
 $ItemData = array(
 				'Item' => $fItem ,
 				'QuantityOrdered' => (int)$QTY_ORDERED,
@@ -38,7 +37,7 @@ $ItemData = array(
 				'QuantityCommitted' => (int)$QTY_COMITTED,
 				'QuantityShipped' => (int)$QTY_SHIPPED
 			);	
-//Add $ItemData row set to 	$allItemData		
+//Add $ItemData row set to nested $allItemData		
 $allItemData[] = $ItemData;	
 
 
@@ -52,6 +51,7 @@ $CUSTOMER_SHIPTO_LOCATION='001';
 $SHIP_VIA_CODE='CCT';
 $ORDER_COMMENT='This is a comment';
 
+//Add order variables to array that will which will later be formatted into JSON
 $data = array(
 'CustomerNumber' => $ACCOUNT_CODE,
 'PurchaseOrderNumber' => $CUST_PO_NUMBER,
@@ -60,7 +60,7 @@ $data = array(
 'ShipToLocationCode' => $CUSTOMER_SHIPTO_LOCATION,
 'ShipViaCode' => $SHIP_VIA_CODE,
 'OrderComment' => $ORDER_COMMENT,		
-//Add All Item Data to the Order
+//Add Nested Item Data to the Order
 'OrderDetails' => $allItemData
 );
 
@@ -68,6 +68,8 @@ $data = array(
 $payload = json_encode($data);
 
 //POST the JSON DATA USING CURL
+	
+	//Endpoint, Username & Password setup
 	$ENDPOINT_URL = 'http://localhost/Sage300WebApi/v1.0/-/SAMINC/OE/OEOrders';
 	$ENDPOINT_USER='WEBAPI';
 	$ENDPOINT_PASS='WEBAPI';	
@@ -81,23 +83,32 @@ $payload = json_encode($data);
 			curl_setopt($CurlHeader, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 			//return response instead of outputting
 			curl_setopt($CurlHeader, CURLOPT_RETURNTRANSFER, true);	
-			//execute the POST request after checking if it may be posted
-			$result = curl_exec($CurlHeader);
-				
+			//execute the POST and put response into $result
+			$result = curl_exec($CurlHeader);				
 			//close cURL resource
 			curl_close($CurlHeader);
 
-		//Check if error exist
+		//Check response if errors exist else print successfull response
 		$JSON_OBJ='{}';
 		$JSON_OBJ = json_decode($result,true); //Decode data from URL into JSON Format
+		$ResponseSuccessFailed=0;
+		//Failed
 		if(isset($JSON_OBJ["error"])){
+			$ResponseSuccessFailed=1;
 			$Error_Check = $JSON_OBJ["error"]; //Extractet field value with  ObjectName:error
 			echo $Error_Check['message']['value'];
 		}	
+		//Success
 		if(isset($JSON_OBJ["OrderNumber"])){
+			$ResponseSuccessFailed=1;
 			$SystemOrderNumber = $JSON_OBJ["OrderNumber"]; //Extractet field value 		
 			$OrderUniquifier = $JSON_OBJ["OrderUniquifier"]; //Extractet field value 
 			echo 'SUCCESS=ORDER CREATED&ORDERNUMBER=' . $SystemOrderNumber;
-		}		
+		}	
+		//Produce unknown error if no response were found.
+		if($ResponseSuccessFailed==0;)
+		{
+			echo 'No respponse from web-api';
+		}
 
 ?>
