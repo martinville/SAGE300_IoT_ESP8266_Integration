@@ -7,8 +7,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const char* ssid     = "BOB";
-const char* password = "Jacoba01";
+const char* ssid     = "Your_AP_SSID";
+const char* password = "Your_AP_Password";
 
 void setup() {
   pinMode(0, INPUT_PULLUP); //flash button will create order
