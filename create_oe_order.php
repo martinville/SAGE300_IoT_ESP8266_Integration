@@ -1,8 +1,9 @@
 <?php
 //**************************************************************************************************************************
-// Create an order in Sage 300 via the Sage 300 Web-API
+// Code by Martin Viljoen 2019-05-24
+// Post an o/e order to Sage 300 via the Sage 300 Web-API
 // This is for sample purposes only
-// Security Risk: Please escape input and add username and password control before placing into production.
+// Security Risk: Please escape input and add username and password control before using in production.
 //**************************************************************************************************************************
 
 //Order Header
