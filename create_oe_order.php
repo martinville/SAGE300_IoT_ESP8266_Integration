@@ -1,6 +1,8 @@
 <?php
 //**************************************************************************************************************************
 // Create an order in Sage 300 via the Sage 300 Web-API
+// This is for sample purposes only
+// Security Risk: Please escape input and add username and password control.
 //**************************************************************************************************************************
 
 //Order Header
