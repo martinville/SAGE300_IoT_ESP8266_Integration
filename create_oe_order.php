@@ -23,7 +23,7 @@ if(!empty($_POST["QTY_SHIPPED"])){$QTY_SHIPPED=$_POST["QTY_SHIPPED"];}else{$QTY_
 
 
 
-//Decalre  Array Item detail row
+//Declare  Array Item detail row
 $ItemData='';  
 //After collecting row information into $ItemData, keep adding to $allItemData array
 $allItemData=array(); 
