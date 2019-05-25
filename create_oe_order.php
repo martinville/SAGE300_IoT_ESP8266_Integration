@@ -76,7 +76,7 @@ $payload = json_encode($data);
 
 			$CurlHeader = curl_init($ENDPOINT_URL);		
 			//set user and pass
-			curl_setopt($CurlHeader, CURLOPT_USERPWD, "$ENDPOINT_USER:$ENDPOINT_PASS"); //Your credentials goes here
+			curl_setopt($CurlHeader, CURLOPT_USERPWD, "$ENDPOINT_USER:$ENDPOINT_PASS"); 
 			//attach encoded JSON string to the POST fields
 			curl_setopt($CurlHeader, CURLOPT_POSTFIELDS, $payload);
 			//set the content type to application/json
@@ -105,7 +105,7 @@ $payload = json_encode($data);
 			$OrderUniquifier = $JSON_OBJ["OrderUniquifier"]; //Extractet field value 
 			echo 'SUCCESS=ORDER CREATED&ORDERNUMBER=' . $SystemOrderNumber;
 		}	
-		//Produce unknown error if no response were found.
+		//Produce unknown error if no responses were found.
 		if($ResponseSuccessFailed==0)
 		{
 			echo 'No respponse from web-api';
