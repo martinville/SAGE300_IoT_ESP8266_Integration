@@ -97,17 +97,3 @@ Serial.println("Done creating order, wait 2 seconds before creating another one.
  delay(2000);  //Send a request every 2 seconds 
  digitalWrite(2, HIGH);//Turn off  LED
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
