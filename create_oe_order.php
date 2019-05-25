@@ -106,7 +106,7 @@ $payload = json_encode($data);
 			echo 'SUCCESS=ORDER CREATED&ORDERNUMBER=' . $SystemOrderNumber;
 		}	
 		//Produce unknown error if no response were found.
-		if($ResponseSuccessFailed==0;)
+		if($ResponseSuccessFailed==0)
 		{
 			echo 'No respponse from web-api';
 		}
