@@ -1,5 +1,5 @@
 //**************************************************************************************************************************
-// Code by Martin Viljoen 2019-05-24
+// Code by Martin Viljoen mailmartinviljoen@gmail.com 2019-05-24
 // Post an o/e order to Sage 300 via the Sage 300 Web-API
 // This sketch is making use of external ESP8266 libraries 
 // <ESP8266WiFi.h> & <ESP8266HTTPClient.h> not by Martin Viljoen
